@@ -57,7 +57,6 @@ namespace SimpleExample
                 {
                     // try read a hb packet from the comport
                     var hb = readsomedata<MAVLink.mavlink_heartbeat_t>();
-
                     var att = readsomedata<MAVLink.mavlink_attitude_t>();
 
                     Console.WriteLine(att.pitch*57.2958 + " " + att.roll*57.2958);
@@ -103,7 +102,7 @@ namespace SimpleExample
             req.target_component = 1;
 
             req.command = (ushort)MAVLink.MAV_CMD.COMPONENT_ARM_DISARM;
-
+            
             req.param1 = armed ? 0 : 1;
             armed = !armed;
             /*
@@ -135,6 +134,12 @@ namespace SimpleExample
         private void CMB_comport_Click(object sender, EventArgs e)
         {
             CMB_comport.DataSource = SerialPort.GetPortNames();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var bat = readsomedata<MAVLink.mavlink_battery_status_t>();
+            Console.WriteLine("Battery:" + bat);
         }
     }
 }

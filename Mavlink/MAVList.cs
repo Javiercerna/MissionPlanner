@@ -72,6 +72,7 @@ namespace MissionPlanner.Mavlink
 
         public bool Contains(byte sysid, byte compid)
         {
+            // Modified back: 31/03
             foreach (var item in masterlist)
             {
                 if (item.Value.sysid == sysid && item.Value.compid == compid)

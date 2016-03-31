@@ -47,6 +47,35 @@ namespace MissionPlanner
             return input/multiplierspeed;
         }
 
+        // CHANGED : 26-03
+        // Env. sensors
+        [DisplayText("Humidity (%)")]
+        public float humidity { get; set; }
+
+        [DisplayText("Temperature (°C)")]
+        public float temperature { get; set; }
+
+        [DisplayText("Pressure (hPa)")]
+        public float pressure { get; set; }
+
+        [DisplayText("Dust (ppb)")]
+        public float dust { get; set; }
+
+        [DisplayText("NO2 (ppb)")]
+        public float NO2 { get; set; }
+
+        [DisplayText("CO (ppb)")]
+        public float CO { get; set; }
+
+        [DisplayText("O3 (ppb)")]
+        public float O3 { get; set; }
+
+        [DisplayText("H2S (ppb)")]
+        public float H2S { get; set; }
+
+        [DisplayText("SO2 (ppb)")]
+        public float SO2 { get; set; }
+
         // orientation - rads
         [DisplayText("Roll (deg)")]
         public float roll { get; set; }
@@ -1143,7 +1172,30 @@ namespace MissionPlanner
                         lastdata = DateTime.Now.AddSeconds(30); // prevent flooding
                     }
 
-                    byte[] bytearray = MAV.packets[(byte) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED];
+                    // CHANGED: 26-03
+                    byte[] bytearray = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.ENV_SENSORS];
+
+                    if (bytearray != null)
+                    {
+                        var env_sensors = bytearray.ByteArrayToStructure<MAVLink.mavlink_env_sensors_t>(6);
+
+                        humidity = env_sensors.Humidity;
+                        temperature = env_sensors.Temperature;
+                        pressure = env_sensors.Pressure;
+                        dust = env_sensors.Dust;
+                        NO2 = env_sensors.NO2;
+                        CO = env_sensors.CO;
+                        O3 = env_sensors.O3;
+                        H2S = env_sensors.H2S;
+                        SO2 = env_sensors.SO2;
+
+                        //Console.WriteLine("ENV_SENSORS Packet");
+
+                        MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.ENV_SENSORS] = null;
+                    }
+
+                    // byte[] bytearray = MAV.packets[(byte) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED];
+                    bytearray = MAV.packets[(byte) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED];
 
                     if (bytearray != null) // hil mavlink 0.9
                     {

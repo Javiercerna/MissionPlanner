@@ -2340,6 +2340,9 @@ namespace MissionPlanner
                                 log.Error(ex);
                             }
                         }
+
+                        // Modified: 31/03
+                        
                         // update currentstate of sysids on the port
                         foreach (var MAV in port.MAVlist.GetMAVStates())
                         {
@@ -2351,6 +2354,34 @@ namespace MissionPlanner
                             {
                                 log.Error(ex);
                             }
+                        }
+
+                        if (port.MAVlist.Count > 1)
+                        {
+                            //System.Console.WriteLine("IT WORKED!!!!!!!!!!!!!!!!!");
+                            var MAV1 = port.MAVlist.GetMAVStates()[0];
+                            var MAV2 = port.MAVlist.GetMAVStates()[1];
+
+                            if (port.MAVlist.GetMAVStates()[0].sysid == 1)
+                            {
+                                MAV1 = port.MAVlist.GetMAVStates()[0];
+                                MAV2 = port.MAVlist.GetMAVStates()[1];
+                            }
+                            else 
+                            {
+                                MAV1 = port.MAVlist.GetMAVStates()[1];
+                                MAV2 = port.MAVlist.GetMAVStates()[0];
+                            }
+
+                            MAV1.cs.humidity = MAV2.cs.humidity;
+                            MAV1.cs.pressure = MAV2.cs.pressure;
+                            MAV1.cs.temperature = MAV2.cs.temperature;
+                            MAV1.cs.dust = MAV2.cs.dust;
+                            MAV1.cs.NO2 = MAV2.cs.NO2;
+                            MAV1.cs.O3 = MAV2.cs.O3;
+                            MAV1.cs.CO = MAV2.cs.CO;
+                            MAV1.cs.H2S = MAV2.cs.H2S;
+                            MAV1.cs.SO2 = MAV2.cs.SO2;
                         }
                     }
                 }

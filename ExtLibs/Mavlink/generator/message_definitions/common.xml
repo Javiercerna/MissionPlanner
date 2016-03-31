@@ -2736,6 +2736,19 @@
             <field type="float" name="size_x">Size in radians of target along x-axis</field>
             <field type="float" name="size_y">Size in radians of target along y-axis</field>
         </message>
+		<message id="159" name="ENV_SENSORS">
+			<description> Environmental sensors for Pixhawk </description>
+			<field type="int16_t" name="Humidity"> From BME280 </field>
+			<field type="int16_t" name="Temperature"> From TSIC-506F </field>
+			<field type="int16_t" name="Pressure"> From BME280 </field>
+			<field type="int16_t" name="Dust"> Env. Sensor </field>
+			<field type="int16_t" name="NO2"> Env. Sensor </field>
+			<field type="int16_t" name="CO"> Env. Sensor </field>
+			<field type="int16_t" name="O3"> Env. Sensor </field>
+			<field type="int16_t" name="H2S"> Env. Sensor </field>
+			<field type="int16_t" name="SO2"> Env. Sensor </field>
+			<field type="int16_t" name="NO"> Env. Sensor </field>
+		</message>
         <!-- MESSAGE IDs 180 - 240: Space for custom messages in individual projectname_messages.xml files -->
         <message id="241" name="VIBRATION">
             <description>Vibration levels and accelerometer clipping</description>

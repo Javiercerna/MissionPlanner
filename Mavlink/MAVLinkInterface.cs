@@ -2777,6 +2777,7 @@ Please check the following
                     }
 
                     // only process for active mav
+                    // Modified back: 31/03
                     if (sysidcurrent == sysid && compidcurrent == compid)
                         PacketReceived(buffer);
 

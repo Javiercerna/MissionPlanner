@@ -34,6 +34,7 @@
             this.but_connect = new System.Windows.Forms.Button();
             this.but_armdisarm = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.btnVoltage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CMB_comport
@@ -81,11 +82,22 @@
             this.but_armdisarm.UseVisualStyleBackColor = true;
             this.but_armdisarm.Click += new System.EventHandler(this.but_armdisarm_Click);
             // 
+            // btnVoltage
+            // 
+            this.btnVoltage.Location = new System.Drawing.Point(452, 60);
+            this.btnVoltage.Name = "btnVoltage";
+            this.btnVoltage.Size = new System.Drawing.Size(75, 23);
+            this.btnVoltage.TabIndex = 4;
+            this.btnVoltage.Text = "Voltage";
+            this.btnVoltage.UseVisualStyleBackColor = true;
+            this.btnVoltage.Click += new System.EventHandler(this.button1_Click);
+            // 
             // simpleexample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 62);
+            this.ClientSize = new System.Drawing.Size(548, 118);
+            this.Controls.Add(this.btnVoltage);
             this.Controls.Add(this.but_armdisarm);
             this.Controls.Add(this.but_connect);
             this.Controls.Add(this.cmb_baudrate);
@@ -103,6 +115,7 @@
         private System.Windows.Forms.Button but_connect;
         private System.Windows.Forms.Button but_armdisarm;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Button btnVoltage;
     }
 }
 
